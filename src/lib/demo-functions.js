@@ -1,4 +1,6 @@
-function circularLoading(){
+import LoadingButton from './loading-button'
+
+export function circularLoading(){
     var button = document.querySelector('.loading-button'),
         options = {
             svg: '#circular-loading',
@@ -34,7 +36,7 @@ function circularLoading(){
 }
 
 
-function circleLoading(){
+export function circleLoading(){
     var button = document.querySelector('.loading-button'),
         options = {
             svg: '#circle-loading',
@@ -55,7 +57,7 @@ function circleLoading(){
                 innerAnimation.call(self, self.options.paths[1].segment);
             }else{
                 segment.draw('-100%', '-100% + 0.1', 0.7, {circular:true, callback: function(){
-                    classie.remove(button, 'show-circles');
+                    button.classList.remove('show-circles')
                     self.handleResponse();
                 }});
                 self.options.paths[1].segment.draw('100%', '100% + 0.1', 0.7, {circular:true});
@@ -72,14 +74,14 @@ function circleLoading(){
     initDemo(button, loading);
 
     button.addEventListener('click', function(){
-        classie.add(button, 'show-circles');
+        button.classList.add('show-circles')
     }, false);
 
     return loading;
 }
 
 
-function infinityLoading(){
+export function infinityLoading(){
     var button = document.querySelector('.loading-button'),
         options = {
             svg: '#infinity-loading',
@@ -108,15 +110,15 @@ function infinityLoading(){
 }
 
 
-function initDemo(button, loading){
+export function initDemo(button, loading){
 
     var makeItFail = document.querySelector('.make-it-fail'),
         makeItSucceed = document.querySelector('.make-it-succeed'),
         controls = document.querySelectorAll('.control-button');
 
     function hideControls(){
-        classie.remove(controls.item(0), 'show-control');
-        classie.remove(controls.item(1), 'show-control');
+        controls.item(0).classList.remove('show-control')
+        controls.item(1).classList.remove('show-control')
     }
 
     makeItFail.addEventListener('click', function(){
@@ -130,8 +132,8 @@ function initDemo(button, loading){
     }, false);
 
     button.addEventListener('click', function(){
-        classie.add(controls.item(0), 'show-control');
-        classie.add(controls.item(1), 'show-control');
+        controls.item(0).classList.add('show-control')
+        controls.item(1).classList.add('show-control')
     }, false);
 
 }
